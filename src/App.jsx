@@ -1,9 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import { Card, CardContent} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
+// import './App.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+ 
   const drawCard = () => {
     // Add your card drawing logic here
     console.log('Drawing a card...')
@@ -14,23 +17,12 @@ function App() {
       <div>
       </div>
       <h1>Oracle Deck</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <button onClick={() => drawCard()}>
         Draw a Card
       </button>
       <div className="card">
-        <img src="/vite.svg" className="logo react" alt="React logo" />
-        <img src="/vite.svg" className="logo vite" alt="Vite logo" />
+        <h2>Card Title</h2>
+        <p>Card description goes here.</p>
       </div>
 
     </>
