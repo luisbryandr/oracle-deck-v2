@@ -1,32 +1,79 @@
 import React, { useState } from 'react';
-import { Card, CardContent} from "@/components/ui/button";
+import { Card, CardContent} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 // import './App.css'
+const sampleDeck = [
+  {
+    title: "Surrender to the Flow",
+    content: "Let go of control. Trust the unfolding of life.",
+    tags: ["Surrender", "Trust"]
+  },
+  {
+    title: "Remember Who You Are",
+    content: "Your essence is divine. Return to your center.",
+    tags: ["Identity", "Divine"]
+  },
+  // Add more cards here
+];
 
+export default function OracleDeckApp() {
+  const [drawnCard, setDrawnCard] = useState(null);
 
-function App() {
- 
   const drawCard = () => {
-    // Add your card drawing logic here
-    console.log('Drawing a card...')
-  }
+    const index = Math.floor(Math.random() * sampleDeck.length);
+    setDrawnCard(sampleDeck[index]);
+  };
 
   return (
-    <>
-      <div>
-      </div>
-      <h1>Oracle Deck</h1>
-      <button onClick={() => drawCard()}>
-        Draw a Card
-      </button>
-      <div className="card">
-        <h2>Card Title</h2>
-        <p>Card description goes here.</p>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-b from-indigo-100 to-white">
+      <h1 className="text-3xl font-bold mb-6">Oracle Deck</h1>
+      <Button onClick={drawCard} className="mb-4">Draw a Card</Button>
 
-    </>
-  )
+      {drawnCard && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Card className="w-80 shadow-xl">
+            <CardContent className="p-6 text-center">
+              <h2 className="text-xl font-semibold mb-2">{drawnCard.title}</h2>
+              <p className="text-base text-gray-700">{drawnCard.content}</p>
+              <div className="mt-4 text-sm text-purple-600">
+                Tags: {drawnCard.tags.join(', ')}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
+    </div>
+  );
 }
 
-export default App
+
+// function App() {
+ 
+//   const drawCard = () => {
+//     // Add your card drawing logic here
+//     console.log('Drawing a card...')
+//   }
+
+//   return (
+//     <>
+//       <div>
+//       </div>
+//       <h1>Oracle Deck</h1>
+//       <button onClick={() => drawCard()}>
+//         Draw a Card
+//       </button>
+//       <div className="card">
+//         <h2>Card Title</h2>
+//         <p>Card description goes here.</p>
+//       </div>
+
+//     </>
+//   )
+// }
+
+// export default App
